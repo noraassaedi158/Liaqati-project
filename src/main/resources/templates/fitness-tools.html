@@ -1,141 +1,45 @@
 
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liaqati - Fitness Tools</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary-purple: #9575CD;
-            --light-purple: #EDE7F6;
-            --dark-purple: #594080;
-            --background: #FAF8FF;
-        }
-
-        body {
-            background-color: var(--background);
-            font-family: Arial, sans-serif;
-        }
-
-        .navbar {
-            background-color: var(--dark-purple);
-            padding: 18px;
-            position: relative;
-            justify-content: center;
-        }
-
-        .navbar-brand {
-            color: white;
-            font-size: 25px;
-            font-weight: bold;
-            margin: 0;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .page-title {
-            color: var(--dark-purple);
-            text-align: center;
-            margin: 35px 0;
-            font-weight: bold;
-        }
-
-        .tool-card {
-            background-color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 25px;
-            height: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .tool-card h3 {
-            color: var(--dark-purple);
-            margin-bottom: 20px;
-        }
-
-        .form-control, .form-select {
-            margin-bottom: 15px;
-            padding: 10px;
-        }
-
-        .btn-purple {
-            background-color: var(--primary-purple);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .btn-purple:hover {
-            background-color: var(--dark-purple);
-            color: white;
-        }
-
-        .result {
-            background-color: var(--light-purple);
-            color: var(--dark-purple);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .timer-display {
-            font-size: 35px;
-            color: var(--dark-purple);
-            text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .timer-buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .timer-buttons button {
-            flex: 1;
-        }
-    </style>
 </head>
 
 <body>
 
-<nav class="navbar">
-    <span class="navbar-brand">Liaqati</span>
-</nav>
+    <header>
+        <h1>Liaqati</h1>
+    </header>
 
-<div class="container">
+    <main>
 
-    <h2 class="page-title">Fitness Tools</h2>
-
-    <div class="row g-4">
+        <h2>Fitness Tools</h2>
 
         <!-- Calorie Calculator -->
-        <div class="col-md-4">
-            <div class="tool-card">
-                <h3>Calorie Calculator</h3>
+        <section>
+            <h3>Calorie Calculator</h3>
 
-                <input type="number" id="age" class="form-control" placeholder="Age">
+            <form>
+                <label for="age">Age:</label>
+                <input type="number" id="age" placeholder="Enter your age">
 
-                <select id="gender" class="form-select">
+                <label for="gender">Gender:</label>
+                <select id="gender">
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
 
-                <input type="number" id="weight" class="form-control" placeholder="Weight (kg)">
-                <input type="number" id="height" class="form-control" placeholder="Height (cm)">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" placeholder="Enter weight">
 
-                <select id="activity" class="form-select">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" placeholder="Enter height">
+
+                <label for="activity">Activity Level:</label>
+                <select id="activity">
                     <option value="">Select Activity Level</option>
                     <option value="1.2">Sedentary</option>
                     <option value="1.375">Light Activity</option>
@@ -143,142 +47,52 @@
                     <option value="1.725">Very Active</option>
                 </select>
 
-                <button class="btn btn-purple" onclick="calculateCalories()">
-                    Calculate
-                </button>
+                <button type="button">Calculate</button>
+                <button type="reset">Reset</button>
 
-                <div id="calorieResult"></div>
-            </div>
-        </div>
-
-        <!-- Water Timer -->
-        <div class="col-md-4">
-            <div class="tool-card">
-                <h3>Water Reminder</h3>
-
-                <p>Set a timer to remind you to drink water.</p>
-
-                <input type="number" id="waterMinutes" class="form-control"
-                       placeholder="Enter minutes" min="1">
-
-                <div class="timer-display" id="waterDisplay">00:00</div>
-
-                <div class="timer-buttons">
-                    <button class="btn btn-purple" onclick="startTimer('water')">Start</button>
-                    <button class="btn btn-purple" onclick="pauseTimer('water')">Pause</button>
-                    <button class="btn btn-purple" onclick="resetTimer('water')">Reset</button>
+                <div id="calorieResult">
+                    Your result will appear here.
                 </div>
-            </div>
-        </div>
+            </form>
+        </section>
+
+        <!-- Water Reminder -->
+        <section>
+            <h3>Water Reminder</h3>
+
+            <p>Set a timer to remind you to drink water.</p>
+
+            <label for="waterMinutes">Reminder Interval (minutes):</label>
+            <input type="number" id="waterMinutes" placeholder="Enter minutes">
+
+            <div id="waterDisplay">00:00</div>
+
+            <button type="button">Start</button>
+            <button type="button">Pause</button>
+            <button type="button">Reset</button>
+        </section>
 
         <!-- Rest Timer -->
-        <div class="col-md-4">
-            <div class="tool-card">
-                <h3>Rest Timer</h3>
+        <section>
+            <h3>Rest Timer</h3>
 
-                <p>Set a timer for your rest breaks.</p>
+            <p>Set a timer for your rest breaks.</p>
 
-                <input type="number" id="restMinutes" class="form-control"
-                       placeholder="Enter minutes" min="1">
+            <label for="restMinutes">Rest Duration (minutes):</label>
+            <input type="number" id="restMinutes" placeholder="Enter minutes">
 
-                <div class="timer-display" id="restDisplay">00:00</div>
+            <div id="restDisplay">00:00</div>
 
-                <div class="timer-buttons">
-                    <button class="btn btn-purple" onclick="startTimer('rest')">Start</button>
-                    <button class="btn btn-purple" onclick="pauseTimer('rest')">Pause</button>
-                    <button class="btn btn-purple" onclick="resetTimer('rest')">Reset</button>
-                </div>
-            </div>
-        </div>
+            <button type="button">Start</button>
+            <button type="button">Pause</button>
+            <button type="button">Reset</button>
+        </section>
 
-    </div>
-</div>
+    </main>
 
-<script>
-    function calculateCalories() {
-        let age = Number(document.getElementById("age").value);
-        let gender = document.getElementById("gender").value;
-        let weight = Number(document.getElementById("weight").value);
-        let height = Number(document.getElementById("height").value);
-        let activity = Number(document.getElementById("activity").value);
-
-        if (!age || !weight || !height || !gender || !activity ||
-            age <= 0 || weight <= 0 || height <= 0) {
-            document.getElementById("calorieResult").innerHTML =
-                '<div class="result">Please enter valid information.</div>';
-            return;
-        }
-
-        let bmr;
-
-        if (gender === "male") {
-            bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-        } else {
-            bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-        }
-
-        let calories = Math.round(bmr * activity);
-
-        document.getElementById("calorieResult").innerHTML =
-            '<div class="result">Estimated daily calories: ' + calories + ' kcal</div>';
-    }
-
-    let timers = {
-        water: { seconds: 0, interval: null },
-        rest: { seconds: 0, interval: null }
-    };
-
-    function updateDisplay(type) {
-        let minutes = Math.floor(timers[type].seconds / 60);
-        let seconds = timers[type].seconds % 60;
-
-        document.getElementById(type + "Display").textContent =
-            String(minutes).padStart(2, "0") + ":" +
-            String(seconds).padStart(2, "0");
-    }
-
-    function startTimer(type) {
-        let timer = timers[type];
-
-        if (timer.interval !== null) return;
-
-        if (timer.seconds <= 0) {
-            let input = Number(document.getElementById(type + "Minutes").value);
-
-            if (!Number.isInteger(input) || input <= 0) {
-                alert("Please enter a valid number of minutes.");
-                return;
-            }
-
-            timer.seconds = input * 60;
-            updateDisplay(type);
-        }
-
-        timer.interval = setInterval(function () {
-            if (timer.seconds > 0) {
-                timer.seconds--;
-                updateDisplay(type);
-            } else {
-                clearInterval(timer.interval);
-                timer.interval = null;
-                alert(type === "water" ? "Time to drink water!" : "Rest time is over!");
-            }
-        }, 1000);
-    }
-
-    function pauseTimer(type) {
-        clearInterval(timers[type].interval);
-        timers[type].interval = null;
-    }
-
-    function resetTimer(type) {
-        clearInterval(timers[type].interval);
-        timers[type].interval = null;
-        timers[type].seconds = 0;
-        document.getElementById(type + "Minutes").value = "";
-        updateDisplay(type);
-    }
-</script>
+    <footer>
+        <p>Liaqati - Your Fitness Journey</p>
+    </footer>
 
 </body>
 </html>

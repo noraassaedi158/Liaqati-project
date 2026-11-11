@@ -19,11 +19,11 @@ public class HistoryController {
     @GetMapping("/history/{userId}")
     public String showHistory(@PathVariable Integer userId, Model model) {
 
-        List<WorkoutLog> workOutLogs =
+        List<WorkoutLog> workoutLogs =
                 workoutService.getUserWorkoutHistory(userId);
         //model passes data from controller to the HTML pages
-        model.addAttribute("logs", workOutLogs);
-        model.addAttribute("total", workOutLogs.size());
+        model.addAttribute("logs", workoutLogs);
+        model.addAttribute("total", workoutLogs.size());
         //tells which page to display 
         return "history";
     }

@@ -33,6 +33,25 @@ public class DiaryController {
             @RequestParam Integer durationMinutes,
             @RequestParam LocalDate date,
             @RequestParam LocalTime time) {
+        
+    	LocalDateTime completionDate = LocalDateTime.of(date, time);
+    	//then hand it in services with this, and service can handle the logic of our program
+        return workoutService.saveWorkoutLog( userId,
+                 workoutId,
+                 durationMinutes,
+                completionDate);
+        
+        
+    }
+}
+
+    public WorkoutLog saveWorkoutLog(
+    		//extract the data from the post request and store it here
+    		@RequestParam Integer userId,
+            @RequestParam Integer workoutId,
+            @RequestParam Integer durationMinutes,
+            @RequestParam LocalDate date,
+            @RequestParam LocalTime time) {
         //then save it in  services
     	LocalDateTime completionDate = LocalDateTime.of(date, time);
         return workoutService.saveWorkoutLog( userId,

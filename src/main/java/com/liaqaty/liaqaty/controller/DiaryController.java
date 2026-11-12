@@ -1,20 +1,20 @@
+
 package com.liaqaty.liaqaty.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.liaqaty.liaqaty.entity.WorkoutLog;
 import com.liaqaty.liaqaty.service.WorkoutService;
 
-@Controller
-@RequestMapping("/diary")
+@RestController
+@RequestMapping("/api/diary")
 public class DiaryController {
 
     private final WorkoutService workoutService;
@@ -23,28 +23,23 @@ public class DiaryController {
         this.workoutService = workoutService;
     }
 
-    @GetMapping
-    public String showDiary(Model model) {
-
-        model.addAttribute("workouts", workoutService.getAllWorkouts());
-        model.addAttribute("today", LocalDate.now());
-        model.addAttribute("currentTime", LocalTime.now());
-
-        return "diary";
-    }
-
+   
+    //when a post request happens, execute this and save a workout log
     @PostMapping
-    public String saveDiary(
-            @RequestParam Integer userId,
+    public WorkoutLog saveWorkoutLog(
+    		//extract the data from the post request and store it here
+    		@RequestParam Integer userId,
             @RequestParam Integer workoutId,
-            @RequestParam Integer minutes,
+            @RequestParam Integer durationMinutes,
             @RequestParam LocalDate date,
             @RequestParam LocalTime time) {
-
-        LocalDateTime completionDate = LocalDateTime.of(date, time);
-
-        workoutService.saveWorkoutLog(userId, workoutId, minutes);
-
-        return "redirect:/history/" + userId;
+        //then save it in  services
+    	LocalDateTime completionDate = LocalDateTime.of(date, time);
+        return workoutService.saveWorkoutLog( userId,
+                 workoutId,
+                 durationMinutes,
+                completionDate);
+        
+        
     }
 }

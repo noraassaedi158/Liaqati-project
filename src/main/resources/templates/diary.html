@@ -13,7 +13,7 @@
 	    <label for="workout" class="form-label">Workout</label>
 	    <select id="workout" name="workout" class="form-select" required>
 	      <option value="">Choose a workout...</option>
-	      <option th:each="w : ${workouts}" th:value="${w}" th:text="${w}">Workout</option>
+	      <option th:each="w : ${workouts}" th:value="${w.workoutId}" th:text="${w.workoutName}">Workout</option>
 	    </select>
 	  </div>
 	  <div class="mb-3">

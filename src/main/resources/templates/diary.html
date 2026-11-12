@@ -16,15 +16,14 @@
 	      <option th:each="w : ${workouts}" th:value="${w}" th:text="${w}">Workout</option>
 	    </select>
 	  </div>
-	  </div>
 	  <div class="mb-3">
 	    <label for="date" class="form-label">Date</label>
-	    <input type="date" id="date" name="date" class="form-control" required>
+	    <input type="date" id="date" name="date" th:value="${today}" class="form-control" required>
 	  </div>
 
 	  <div class="mb-3">
 	    <label for="time" class="form-label">Time</label>
-	    <input type="time" name="time" id="time" class="form-control" required>
+	    <input type="time" name="time" id="time" th:value="${currentTime}" class="form-control" required>
 	  </div>
 
 	  <div class="mb-3">

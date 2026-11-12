@@ -9,10 +9,10 @@ import com.liaqaty.liaqaty.service.WorkoutService;
 
 @Controller
 //makes page Spring MVC(model, view, comtroller) and this page can return view
-public class HistoryController {
+public class HistoryPageController {
     //make an workout Service object and add all dependencies because we inject the constructor 
     private final WorkoutService workoutService;
-    public HistoryController(WorkoutService workoutService) {
+    public HistoryPageController(WorkoutService workoutService) {
         this.workoutService = workoutService;
     }
 

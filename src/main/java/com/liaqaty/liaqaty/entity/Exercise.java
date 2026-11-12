@@ -25,52 +25,81 @@ public class Exercise {
 
     private String instructions;
 
-	public Integer getExerciseId() {
-		return exerciseId;
-	}
+    private Integer reps;
 
-	public void setExerciseId(Integer exerciseId) {
-		this.exerciseId = exerciseId;
-	}
+    private Integer sets;
 
-	public String getExerciseName() {
-		return exerciseName;
-	}
+    private String rest;
 
-	public void setExerciseName(String exerciseName) {
-		this.exerciseName = exerciseName;
-	}
+    public Integer getExerciseId() {
+        return exerciseId;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setExerciseId(Integer exerciseId) {
+        this.exerciseId = exerciseId;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getExerciseName() {
+        return exerciseName;
+    }
 
-	public String getEquipmentType() {
-		return equipmentType;
-	}
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
 
-	public void setEquipmentType(String equipmentType) {
-		this.equipmentType = equipmentType;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getDifficultyLevel() {
-		return difficultyLevel;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setDifficultyLevel(String difficultyLevel) {
-		this.difficultyLevel = difficultyLevel;
-	}
+    public String getEquipmentType() {
+        return equipmentType;
+    }
 
-	public String getInstructions() {
-		return instructions;
-	}
+    public void setEquipmentType(String equipmentType) {
+        this.equipmentType = equipmentType;
+    }
 
-	public void setInstructions(String instructions) {
-		this.instructions = instructions;
-	}
-    
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public Integer getReps() {
+        return reps;
+    }
+
+    public void setReps(Integer reps) {
+        this.reps = reps;
+    }
+
+    public Integer getSets() {
+        return sets;
+    }
+
+    public void setSets(Integer sets) {
+        this.sets = sets;
+    }
+
+    public String getRest() {
+        return rest;
+    }
+
+    public void setRest(String rest) {
+        this.rest = rest;
+    }
 }

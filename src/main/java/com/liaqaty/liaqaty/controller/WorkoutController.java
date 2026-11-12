@@ -35,15 +35,5 @@ public class WorkoutController {
         return workoutService.getUserWorkoutHistory(userId);
     }
 
-    // when a post request happens, execute this and save a workout log
-    @PostMapping("/diary")
-    public WorkoutLog saveWorkoutLog(
-    		//extract the data from the post request and store it here
-            @RequestParam Integer userId,
-            @RequestParam Integer workoutId,
-            @RequestParam Integer durationMinutes) {
-        //then save it in  services
-        return workoutService.saveWorkoutLog(
-                userId, workoutId, durationMinutes);
-    }
+    
 }

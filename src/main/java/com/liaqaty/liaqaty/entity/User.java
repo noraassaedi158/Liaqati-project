@@ -1,9 +1,9 @@
-
 package com.liaqaty.liaqaty.entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -18,8 +18,9 @@ public class User {
 
     private String email;
 
+    // تم تعديل الاسم هنا ليطابق نظام Spring Security مع الاحتفاظ باسم العمود في قاعدة البيانات
     @Column(name = "password_hash")
-    private String passwordHash;
+    private String password; 
 
     private Integer age;
 
@@ -30,68 +31,45 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-	public Integer getUserId() {
-		return userId;
-	}
+    // --- الإضافة الخاصة بمهمتك (علاقة الصلاحيات والأمان) ---
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    // مُشيد فارغ مطلوب لقواعد البيانات
+    public User() {}
 
-	public String getName() {
-		return name;
-	}
+    // --- دوال الإرجاع والتعديل (Getters and Setters) للجميع --- //
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) { this.userId = userId; }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-	public String getPasswordHash() {
-		return passwordHash;
-	}
+    // الدوال التي كان يبحث عنها ملف UserService
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
+    public Integer getAge() { return age; }
+    public void setAge(Integer age) { this.age = age; }
 
-	public Integer getAge() {
-		return age;
-	}
+    public BigDecimal getWeight() { return weight; }
+    public void setWeight(BigDecimal weight) { this.weight = weight; }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public BigDecimal getHeight() { return height; }
+    public void setHeight(BigDecimal height) { this.height = height; }
 
-	public BigDecimal getWeight() {
-		return weight;
-	}
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-	public void setWeight(BigDecimal weight) {
-		this.weight = weight;
-	}
-
-	public BigDecimal getHeight() {
-		return height;
-	}
-
-	public void setHeight(BigDecimal height) {
-		this.height = height;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-    
+    // دوال الصلاحيات
+    public Collection<Role> getRoles() { return roles; }
+    public void setRoles(Collection<Role> roles) { this.roles = roles; }
 }

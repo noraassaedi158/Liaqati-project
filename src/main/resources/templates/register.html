@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account - Liaqaty</title>
+</head>
+<body>
+    <h2>Register a New Account</h2>
+
+    <div th:if="${errorMessage}" style="color: #d8000c; background-color: #ffbaba; border: 1px solid #d8000c; padding: 10px; margin-bottom: 15px; border-radius: 5px; font-weight: bold;">
+        <p th:text="${errorMessage}" style="margin: 0;"></p>
+    </div>
+
+    <form th:action="@{/register/save}" th:object="${user}" method="post">
+        <label>Name:</label><br>
+        <input type="text" th:field="*{name}" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" th:field="*{email}" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" th:field="*{password}" required><br><br>
+
+        <label>Age:</label><br>
+        <input type="number" th:field="*{age}" required><br><br>
+
+        <label>Weight (kg):</label><br>
+        <input type="number" step="0.1" th:field="*{weight}" required><br><br>
+
+        <label>Height (cm):</label><br>
+        <input type="number" step="0.1" th:field="*{height}" required><br><br>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>

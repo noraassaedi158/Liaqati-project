@@ -1,7 +1,7 @@
 
 
 package com.liaqaty.liaqaty.service;
-
+import com.liaqaty.liaqaty.DTO.ProgressDTO;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -93,4 +93,23 @@ public class ProgressService {
 
         return streak;
     }
-}
+    public ProgressDTO getUserProgress(Integer userId) {
+
+        int totalMinutes = getTotalMinutes(userId);
+        int remainingMinutes = getRemainingMinutes(userId);
+        double milestoneProgress = getMilestoneProgress(userId);
+        int currentStreak = getCurrentStreak(userId);
+
+        // Temporary values until badge implementation is integrated
+        int totalPoints = 0;
+        int earnedBadges = 0;
+
+        return new ProgressDTO(
+                totalMinutes,
+                remainingMinutes,
+                milestoneProgress,
+                currentStreak,
+                totalPoints,
+                earnedBadges
+        );
+    }}

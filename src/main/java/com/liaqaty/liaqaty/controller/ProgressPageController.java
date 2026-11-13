@@ -14,7 +14,7 @@ import com.liaqaty.liaqaty.service.ProgressService;
 
 @Controller
 @RequestMapping("/progress")
-public class ProgressController {
+public class ProgressPageController {
 
     private final ProgressService progressService;
 

@@ -26,3 +26,4 @@ public class DiaryPageController {
         return "diary";
     }
 }
+

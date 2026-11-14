@@ -1,4 +1,3 @@
-
 package com.liaqaty.liaqaty.controller;
 
 import org.springframework.web.bind.annotation.*;
